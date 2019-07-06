@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+var options = {
+	title: {
+		text: "Most Grand Slams won"
+	},
+	subtitles: [{
+		text: "As of December 2018"
+	}],
+	animationEnabled: true,
+	data: [{
+		type: "pie",
+		startAngle: 40,
+		toolTipContent: "<b>{label}</b>: {y}%",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		indexLabel: "{label} - {y}%",
+		dataPoints: [
+            {% for player in entry %}
+                { y: {{player['Grand_slams']}}, label: "{{player['first_name']}} {{player['last_name']}} "}
+                {% if not loop.last %}
+                    ,
+                {% endif %}
+            {% endfor %}
+		]
+	}]
+};
+$("#chartContainer").CanvasJSChart(options);
+
+}
+</script>
+</head>
+<body>
+        <table>
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>No. of Grand Slams</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for player in entry %}
+                  <tr>
+                    <td>{{player['first_name']}}</td>
+                    <td>{{player['last_name']}}</td>
+                    <td>{{player['Grand_slams']}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+</body>
+</html>
