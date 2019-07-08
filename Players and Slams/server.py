@@ -5,7 +5,7 @@ app = Flask(__name__)
 mysql = connectToMySQL('friendsdb')
 @app.route('/')
 def index():
-    result = mysql.query_db("select * from players;")
+    result = mysql.query_db("select * from players")
     return render_template("index.html", entry = result)
 
 if __name__=="__main__":
