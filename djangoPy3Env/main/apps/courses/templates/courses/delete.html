@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'helper/css/main.css' %}">
+</head>
+<body>
+    <h1>Are you sure you want to delete the {{current_course.name}} Course?</h1>
+    <h4>{{current_course.description}}</h4>
+    <h4>Posted On: {{current_course.created_at}}</h4>
+    <button><a href="/courses/">No</a></button>
+    <button><a href="/courses/delete/{{current_course.id}}">Yes! Delete this course</a></button>
+
+</body>
+</html>

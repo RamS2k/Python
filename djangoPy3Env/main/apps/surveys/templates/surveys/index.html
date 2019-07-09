@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Surveys</title>
+    {% load static %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'blogs/css/main.css' %}">
+      <!-- Put the static files in the static folder inside your app.  
+           Django collects files within all static folders and puts them within a single folder -->   
+</head>
+<body>
+    <h1>Survey Form</h1>
+    <form action='/surveys/results' method='post'>
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name">
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" name="email">
+        <br>
+        <label for="dojo_location">Dojo Location:</label>
+        <select name="dojo_location" id="">
+            <option value="Chicago">Chicago</option>
+            <option value="Phoenix">Phoenix</option>
+            <option value="Dallas">Dallas</option>
+            <option value="Seattle">Seattle</option>
+        </select>
+        <br>
+        <label for="favorite_language">Favorite Language:</label>
+        <select name="favorite_language" id="">
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Ruby">Ruby</option>
+            <option value="Swift">Swift</option>
+        </select>
+        <br>
+        Comment:
+        <br>
+        <textarea name="comment"></textarea>
+        <button name="submit">Submit</button>
+        {% csrf_token %}
+    </form>
+</body>
+</html>

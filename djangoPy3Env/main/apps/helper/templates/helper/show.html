@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'helper/css/main.css' %}">
+</head>
+<body>
+    <h3>{{current_job.title}}</h3>
+    <h4>{{current_job.location}}</h4>
+    <h4>{{current_job.description}}</h4>
+    <h4>Posted On: {{current_job.created_at}}</h4>
+    <a href="/helper/add_my_job/{{current_job.id}}">Add To My Jobs</a>
+    <br>
+    <a href="/helper/load_dash">Go Back</a>
+    <br><br>
+    <a href="/helper/logout">Logout</a>
+</body>
+</html>

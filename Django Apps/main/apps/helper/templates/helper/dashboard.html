@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'helper/css/main.css' %}">
+</head>
+<body>
+    <h1>Welcome {{current_user.first_name}}!</h1>
+    <a href="/helper/add_jobs_page">Add a Job</a>
+    <br>
+    <br>
+    <div class="jobs">
+        <table border="3">
+            <thead>
+                <tr>
+                    <th>Job</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in jobs_empty %}
+                <tr>
+                    <td>{{i.title}}</td>
+                    <td>{{i.location}}</td>
+                    <td>
+                        <a href="/helper/view/{{i.id}}">View </a>
+                        <a href="/helper/add_my_job/{{i.id}}">Add</a>
+                        {% if request.session.id == i.creator.id %}
+                        <a href="/helper/edit_jobs_page/{{i.id}}">Edit </a>
+                        <a href="/helper/delete/{{i.id}}">Cancel </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="my_jobs">
+        <table border="3">
+            <thead>
+                <th>My Jobs</th>
+            </thead>
+            <tbody>
+                    {% for i in user_jobs %}
+                    <tr>
+                        <td>{{i.title}}</td>
+                        <td><a href="/helper/view/{{i.id}}">View </a>
+                        <td><a href="/helper/delete/{{i.id}}">Done </a>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br><br>
+    <a href="/helper/logout">Logout</a>
+</body>
+</html>
